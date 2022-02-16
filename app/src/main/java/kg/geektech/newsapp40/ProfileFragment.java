@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment {
                     }
                 });
         binding.avatar.setOnClickListener(view -> {
-            activityResultLauncher.launch("image/*");
+            activityResultLauncher.launch("image/*"); //означает вызываеваемый тип данных (image,video,document)
         });
     }
 }

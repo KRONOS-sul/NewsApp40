@@ -1,14 +1,17 @@
 package kg.geektech.newsapp40.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.FragmentHomeBinding;
+import kg.geektech.newsapp40.models.News;
 
 public class HomeFragment extends Fragment {
 
@@ -32,8 +36,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        
+
         binding.fab.setOnClickListener(view1 -> {
             openFragment();
+        });
+        getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                News news = (News) result.getSerializable("news");
+                Log.e("ggggg", "GG: " + news.getTitle());
+
+            }
         });
     }
 
