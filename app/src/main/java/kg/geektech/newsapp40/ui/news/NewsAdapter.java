@@ -20,10 +20,10 @@ import kg.geektech.newsapp40.models.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     private ItemNewsBinding binding;
-    private ArrayList<News> list;
+     ArrayList<News> list;
 
-    public NewsAdapter(){
-        list = new ArrayList<>();
+    public NewsAdapter(ArrayList<News> list) {
+        this.list = list;
     }
 
     @NonNull
@@ -61,7 +61,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             Date currentTime = Calendar.getInstance().getTime();
             String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentTime);
             binding.tv1.setText(news.getTitle());
-            binding.data.setText((CharSequence) currentTime);
+            binding.data.setText(formattedDate);
             if (getAdapterPosition() %2 == 1){
                 itemView.setBackgroundResource(R.color.red);
             }else{
