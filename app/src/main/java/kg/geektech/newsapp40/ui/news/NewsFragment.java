@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import kg.geektech.newsapp40.App;
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.FragmentNewsBinding;
 import kg.geektech.newsapp40.models.News;
@@ -42,6 +43,7 @@ public class NewsFragment extends Fragment {
         Bundle bundle = new Bundle();
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
+        App.appDataBase.newsDao().insertNews(news);
         close();
     }
 

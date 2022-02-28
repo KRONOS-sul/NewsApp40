@@ -17,6 +17,7 @@ import android.widget.Button;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import kg.geektech.newsapp40.Prefs;
 import kg.geektech.newsapp40.R;
 
 public class BoardFragment extends Fragment {
@@ -49,7 +50,6 @@ public class BoardFragment extends Fragment {
                 if (position == 2) {
                     skip.setVisibility(View.GONE);
                     next.setVisibility(View.VISIBLE);
-
                 } else {
                     skip.setVisibility(View.VISIBLE);
                     next.setVisibility(View.GONE);
@@ -57,10 +57,14 @@ public class BoardFragment extends Fragment {
             }
         });
         skip.setOnClickListener(view1 -> {
+            Prefs prefs = new Prefs(requireActivity());
+            prefs.saveBoardState();
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
             navController.navigateUp();
         });
         next.setOnClickListener(view12 -> {
+            Prefs prefs = new Prefs(requireActivity());
+            prefs.saveBoardState();
             NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
             navController.navigateUp();
         });

@@ -1,6 +1,7 @@
 package kg.geektech.newsapp40;
 
 import android.os.Bundle;
+import android.os.FileObserver;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -13,6 +14,9 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.io.File;
+import java.io.IOException;
 
 import kg.geektech.newsapp40.databinding.ActivityMainBinding;
 
@@ -36,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+        Prefs prefs = new Prefs(this);
+        if (!prefs.isBoardShown()){
+            navController.navigate(R.id.boardFragment);}
         navController.navigate(R.id.boardFragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -45,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 }else {navView.setVisibility(View.VISIBLE);}
             }
         });
+
+        File file = new File(getCacheDir(),"note.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File folder = new File(getCacheDir(), "Images");
+        folder.mkdir();
     }
 
 }
