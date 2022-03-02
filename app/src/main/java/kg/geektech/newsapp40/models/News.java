@@ -25,10 +25,23 @@ public class News implements Serializable {
     @ColumnInfo(name = "created_at")
     private long createdAt;
 
-    public News(String title, long createdAt) {
+    @ColumnInfo(name = "description")
+    String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public News(String title, long createdAt, String description) {
         this.title = title;
         this.createdAt = createdAt;
+        this.description = description;
     }
+
 
     public String getTitle() {
         return title;

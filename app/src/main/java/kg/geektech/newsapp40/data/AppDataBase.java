@@ -5,8 +5,6 @@ import androidx.room.RoomDatabase;
 
 import kg.geektech.newsapp40.models.News;
 
-@Database(entities = {News.class}, version = 1)
+@Database(entities = {News.class}, version = 2)
 public abstract class AppDataBase extends RoomDatabase {
-    public abstract NewsDao newsDao();
-
-}
+    public abstract NewsDao newsDao();}

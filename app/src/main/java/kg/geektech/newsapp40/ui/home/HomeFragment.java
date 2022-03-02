@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import kg.geektech.newsapp40.App;
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.FragmentHomeBinding;
 import kg.geektech.newsapp40.models.News;
@@ -64,12 +66,13 @@ public class HomeFragment extends Fragment {
                 });
 
         binding.recycler.setAdapter(adapter);
+        List<News> newsList = App.appDataBase.newsDao().getAllNews();
+        adapter.addItems(newsList);
 
     }
 
     private void loadData() {
         newsModels = new ArrayList<>();
-        newsModels.add(new News("sfadsffdsf", 3424234));
     }
 
 

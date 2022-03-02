@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import kg.geektech.newsapp40.R;
 import kg.geektech.newsapp40.databinding.ItemNewsBinding;
@@ -20,7 +21,7 @@ import kg.geektech.newsapp40.models.News;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     private ItemNewsBinding binding;
-     ArrayList<News> list;
+    ArrayList<News> list;
 
     public NewsAdapter(ArrayList<News> list) {
         this.list = list;
@@ -41,12 +42,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        return list.size()-1;
+        return list.size() - 1;
     }
 
     public void addItem(News news) {
         list.add(0, news);
         notifyItemInserted(0);
+    }
+
+    public void addItems(List<News> newsList) {
+        list = (ArrayList<News>) newsList;
+        notifyDataSetChanged();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -62,9 +68,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentTime);
             binding.tv1.setText(news.getTitle());
             binding.data.setText(formattedDate);
-            if (getAdapterPosition() %2 == 1){
+            if (getAdapterPosition() % 2 == 1) {
                 itemView.setBackgroundResource(R.color.red);
-            }else{
+            } else {
                 itemView.setBackgroundResource(R.color.purple_200);
             }
         }

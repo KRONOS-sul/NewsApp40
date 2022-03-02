@@ -14,7 +14,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         appDataBase = Room.databaseBuilder(getApplicationContext(), AppDataBase.class, "news-db")
-                .allowMainThreadQueries().build();
+                .fallbackToDestructiveMigration().allowMainThreadQueries().build();
     }
 
 }

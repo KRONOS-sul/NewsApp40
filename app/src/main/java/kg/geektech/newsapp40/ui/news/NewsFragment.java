@@ -39,7 +39,7 @@ public class NewsFragment extends Fragment {
 
     private void save() {
         String text = binding.edNews.getText().toString();
-        News news = new News(text, System.currentTimeMillis());
+        News news = new News(text, System.currentTimeMillis(), "Description");
         Bundle bundle = new Bundle();
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
